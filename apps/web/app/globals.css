@@ -1,0 +1,57 @@
+:root {
+  --bg: #07080a; --panel: #0e1014; --line: #22262d; --text: #e9ecf0; --muted: #8d939c; --ice: #9fd3ff;
+  --chrome: linear-gradient(180deg, #f6f8fa 0%, #c3c8cf 45%, #7d838c 55%, #e3e6ea 100%);
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--bg); color: var(--text); font: 15px/1.55 system-ui, sans-serif; }
+button { font: inherit; color: inherit; cursor: pointer; }
+pre, code { font-family: ui-monospace, monospace; font-size: 13px; }
+pre { background: #07080a; border: 1px solid var(--line); border-radius: 10px; padding: 12px; overflow-x: auto; }
+.muted { color: var(--muted); }
+.shell { display: grid; grid-template-columns: 250px 1fr; min-height: 100vh; }
+@media (max-width: 800px) { .shell { grid-template-columns: 1fr; } }
+.side { border-right: 1px solid var(--line); padding: 18px; display: flex; flex-direction: column; gap: 18px; background: #0a0b0e; }
+.brand { display: flex; gap: 10px; align-items: center; font-weight: 600; }
+.mark { width: 20px; height: 20px; border-radius: 50%; background: radial-gradient(circle at 32% 28%, #fff 0 8%, #d3d7dd 20%, #5d636b 55%, #1b1e23 72%, #9aa0a8 100%); }
+.conn { display: flex; gap: 8px; align-items: center; font-size: 13px; color: var(--muted); }
+.led { width: 8px; height: 8px; border-radius: 50%; background: #555; }
+.led.on { background: #6fe3a3; box-shadow: 0 0 8px #6fe3a3; }
+.side nav, .tables { display: flex; flex-direction: column; gap: 4px; }
+.side button { text-align: left; background: none; border: 0; padding: 8px 10px; border-radius: 8px; color: var(--muted); display: flex; justify-content: space-between; }
+.side button span { font-size: 12px; opacity: 0.6; }
+.side button:hover { background: rgba(255,255,255,0.04); color: var(--text); }
+.side button.on { background: var(--chrome); color: #0a0b0d; }
+.label { font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em; color: #5c626b; margin: 6px 10px; }
+.main { padding: 20px; min-width: 0; }
+.panel { background: var(--panel); border: 1px solid var(--line); border-radius: 14px; padding: 20px; }
+.panel h2 { margin: 0 0 4px; font-size: 18px; }
+.graph-view { display: grid; grid-template-columns: 1fr 320px; gap: 16px; }
+@media (max-width: 1100px) { .graph-view { grid-template-columns: 1fr; } }
+.graph-panel { padding: 8px; overflow: auto; }
+.graph { width: 100%; min-width: 600px; height: auto; }
+.edge { stroke: #6b717a; stroke-width: 1.5; }
+.edge.inferred { stroke: var(--ice); stroke-dasharray: 5 5; }
+.edge.hot { stroke: #f2f4f7; stroke-width: 2.5; }
+.edge.inferred.hot { stroke: var(--ice); }
+.node rect { fill: #14171c; stroke: #3a3f46; }
+.node text { fill: var(--text); font: 13px ui-monospace, monospace; }
+.node { cursor: pointer; }
+.node:hover rect { stroke: #c3c8cf; }
+.node.on rect { fill: #e3e6ea; stroke: #fff; }
+.node.on text { fill: #0a0b0d; }
+.cols { width: 100%; border-collapse: collapse; margin: 10px 0; }
+.cols td, .cols th { padding: 6px 4px; border-bottom: 1px solid #171a1f; text-align: left; font-size: 13px; }
+.tag { font-size: 11px; padding: 2px 8px; border-radius: 999px; background: rgba(255,255,255,0.07); }
+.tag.inferred { color: var(--ice); background: rgba(159,211,255,0.1); }
+.rel { display: flex; justify-content: space-between; gap: 8px; align-items: center; padding: 6px 0; }
+.detail h3 { font-size: 13px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); margin: 18px 0 6px; }
+.rec { display: grid; grid-template-columns: 70px 1fr; gap: 12px; padding: 14px 0; border-bottom: 1px solid #171a1f; }
+.rec p { margin: 4px 0; color: #b7bcc4; }
+.sev { font: 600 11px ui-monospace, monospace; text-transform: uppercase; padding: 3px 6px; border-radius: 6px; height: fit-content; text-align: center; background: rgba(255,255,255,0.05); }
+.sev.high { color: #ff8a7a; } .sev.medium { color: #f2c46d; } .sev.low { color: var(--ice); }
+.ask { display: flex; gap: 8px; margin: 14px 0; }
+.ask input { flex: 1; background: #07080a; border: 1px solid var(--line); border-radius: 10px; padding: 12px; color: var(--text); font: inherit; }
+.ask button { background: var(--chrome); color: #0a0b0d; border: 0; border-radius: 10px; padding: 0 20px; font-weight: 600; }
+.ask button:disabled { opacity: 0.5; }
+.err { color: #ff8a7a; }

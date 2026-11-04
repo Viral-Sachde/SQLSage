@@ -1,0 +1,35 @@
+{
+  "name": "sqlsage",
+  "private": true,
+  "version": "0.1.0",
+  "description": "AI-powered database intelligence",
+  "type": "module",
+  "workspaces": [
+    "packages/shared",
+    "packages/graph",
+    "packages/adapter-postgres",
+    "packages/core",
+    "packages/ai",
+    "packages/sdk",
+    "apps/cli",
+    "apps/server",
+    "apps/web",
+    "apps/marketing"
+  ],
+  "scripts": {
+    "build": "npm run build --workspaces --if-present",
+    "build:packages": "npm run build -w @sqlsage/shared -w @sqlsage/graph -w @sqlsage/adapter-postgres -w @sqlsage/core -w @sqlsage/ai -w @sqlsage/sdk",
+    "typecheck": "npm run typecheck --workspaces --if-present",
+    "dev:web": "npm run dev -w @sqlsage/web",
+    "dev:server": "npm run dev -w @sqlsage/server",
+    "dev:marketing": "npm run dev -w @sqlsage/marketing",
+    "cli": "node apps/cli/dist/index.js"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "devDependencies": {
+    "@types/node": "^22.20.5",
+    "typescript": "^5.9.3"
+  }
+}

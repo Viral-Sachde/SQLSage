@@ -1,0 +1,22 @@
+# Local development stack: a sample Postgres, the SQLsage server and the dashboard.
+services:
+  sample-db:
+    image: postgres:17
+    environment:
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: app
+    ports: ["5432:5432"]
+    volumes:
+      - ./docker/seed.sql:/docker-entrypoint-initdb.d/seed.sql:ro
+
+  server:
+    build: { context: ., dockerfile: docker/server.Dockerfile }
+    depends_on: [sample-db]
+    environment:
+      SQLSAGE_DATABASE_URL: postgres://sqlsage_readonly:readonly@sample-db:5432/app
+      SQLSAGE_LLM_PROVIDER: ${SQLSAGE_LLM_PROVIDER:-anthropic}
+      ANTHROPIC_API_KEY: ${ANTHROPIC_API_KEY:-}
+      SQLSAGE_OLLAMA_URL: ${SQLSAGE_OLLAMA_URL:-http://host.docker.internal:11434}
+      SQLSAGE_EGRESS: ${SQLSAGE_EGRESS:-schema}
+      SQLSAGE_WEB_ORIGIN: http://localhost:3000
+    ports: ["4000:4000"]
